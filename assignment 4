@@ -1,0 +1,62 @@
+ Configure and test basic firewall rules to allow or block traffic
+
+step 1:Open firewall configuration tool (Windows Firewall or terminal for UFW).
+you can open the firewall configuration tool in windows firewalls and you can open in the terminal for UFW.
+-Press Windows + R on your keyboard.
+-Type wf.msc and press Enter.
+-The window “Windows Defender Firewall with Advanced Security” will open.
+
+step 2:List Current Firewall Rules
+Command Used:
+netsh advfirewall firewall show rule name=all
+
+step 3. Add Rule to Block Telnet (Port 23)
+GUI Steps:
+In "Windows Firewall with Advanced Security"
+Right-click "Inbound Rules" in left panel
+Select "New Rule..."
+Rule Type: Select "Port" → Next
+Protocol and Ports:
+TCP
+Specific local ports: 23
+Click Next
+Action: Select "Block the connection" → Next
+Profile: Check all (Domain, Private, Public) → Next
+Name: Block Telnet Port 23
+Click Finish
+
+step 4:Verify the Block Rule was Created
+Command:
+netsh advfirewall firewall show rule name="Block Telnet"
+
+step 5: Test the Block Rule
+First, enable Telnet client (if not already):
+command
+dism /online /Enable-Feature /FeatureName:TelnetClient
+Test Telnet connection:
+command
+telnet localhost 23
+
+step 6: Export Current Firewall Rules for Documentation
+Command:
+netsh advfirewall firewall show rule name=all > current_firewall_rules.txt
+step 7: Remove the Test Block Rule
+GUI Method:
+In "Windows Firewall with Advanced Security"
+Click "Inbound Rules"
+Find "Block Telnet" rule
+Right-click → Delete
+Confirm deletion
+Command Line Method:
+netsh advfirewall firewall delete rule name="Block Telnet"
+
+step 8. Verify Rule Removal
+Command:
+netsh advfirewall firewall show rule name="Block Telnet"
+
+step 9. Final Test - Confirm Telnet Works Again
+command
+telnet localhost 23
+If Telnet server is running, you should see:
+text
+Connecting To localhost...
