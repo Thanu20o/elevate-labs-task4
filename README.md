@@ -1,1 +1,4 @@
 # elevate-labs-task4
+
+In this Windows Firewall configuration task, I successfully implemented and tested basic firewall rules to control network traffic. I began by examining the existing firewall rules to understand the current security posture. Then I created a specific blocking rule to deny inbound Telnet connections on port 23, demonstrating proactive security measures. After implementing the block rule, I conducted thorough testing to verify the rule was functioning correctly by attempting Telnet connections that were properly refused. Finally, I systematically removed the test rule to restore the original firewall state, ensuring no residual configuration changes remained. This exercise provided practical experience in Windows Firewall management using both command-line tools and graphical interface, covering the complete lifecycle of firewall rule creation, testing, and cleanup while maintaining system security throughout the process.
+
